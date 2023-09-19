@@ -58,7 +58,6 @@ $ flutter run
 
 
 
-
 ## License
 
 MIT
@@ -66,6 +65,8 @@ MIT
 ## 最后
 
 如果你喜欢这个项目，欢迎给我一个star。里面可能还有许多需要修改的bug,欢迎大家提出来,我将持续更新这个项目)
+下一步用dartfrog写接口，然后后台管理接入
+[dartfrog](https://dartfrog.vgv.dev/)
 
 
 ## 参考学习
