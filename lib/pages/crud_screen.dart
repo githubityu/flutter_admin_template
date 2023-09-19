@@ -26,7 +26,7 @@ class _CrudScreenState extends State<CrudScreen> {
     super.initState();
 
     _dataSource = DataSource(
-      onDetailButtonPressed: (data) => CrudDetailRoute('${data['id']}').go(context),
+      onDetailButtonPressed: (data) => CrudDetailRoute('${data['id']}').push(context),
       onDeleteButtonPressed: (data) {},
     );
   }
@@ -143,7 +143,7 @@ class _CrudScreenState extends State<CrudScreen> {
                                         child: ElevatedButton(
                                           style: appDataTableTheme!
                                               .successElevated,
-                                          onPressed: () => const CrudDetailRoute("5").go(context),
+                                          onPressed: () => const CrudDetailRoute("5").push(context),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
