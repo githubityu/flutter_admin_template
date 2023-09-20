@@ -6,7 +6,7 @@ Responsive web with light/dark mode and multi language supported. The objective 
 to develop an admin portal website with Flutter v3 (SDK version 3.13.4).
 
 
-#### Live demo: https://githubityu.github.io/live_flutter_admin/dashboard
+#### Live demo: https://githubityu.github.io/live_flutter_admin
 
 ## Setup
 
