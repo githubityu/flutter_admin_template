@@ -185,7 +185,7 @@ extension $FormsRouteExtension on FormsRoute {
 }
 
 RouteBase get $iconsRoute => GoRouteData.$route(
-      path: '/icons',
+      path: '/animal',
       factory: $IconsRouteExtension._fromState,
     );
 
@@ -193,7 +193,7 @@ extension $IconsRouteExtension on IconsRoute {
   static IconsRoute _fromState(GoRouterState state) => const IconsRoute();
 
   String get location => GoRouteData.$location(
-        '/icons',
+        '/animal',
       );
 
   void go(BuildContext context) => context.go(location);

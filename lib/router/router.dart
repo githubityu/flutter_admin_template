@@ -11,7 +11,7 @@ import 'package:flutter_admin_template/pages/crud_screen.dart';
 import 'package:flutter_admin_template/pages/error_page.dart';
 import 'package:flutter_admin_template/pages/forms_page.dart';
 import 'package:flutter_admin_template/pages/general_ui_screen.dart';
-import 'package:flutter_admin_template/pages/icons_page.dart';
+import 'package:flutter_admin_template/pages/animal_page.dart';
 import 'package:flutter_admin_template/pages/iframe_demo_screen.dart';
 import 'package:flutter_admin_template/pages/labels_page.dart';
 import 'package:flutter_admin_template/pages/login_screen.dart';
@@ -82,7 +82,7 @@ class RoutePath {
   static const breadcrumbs = '/breadcrumbs';
   static const buttons = '/buttons';
   static const forms = '/forms';
-  static const icons = '/icons';
+  static const animal = '/animal';
   static const labels = '/labels';
   static const modals = '/modals';
   static const panels = '/panels';
@@ -115,7 +115,7 @@ class RouteTitle {
   static const breadcrumbs = 'Breadcrumbs';
   static const buttons = 'Buttons';
   static const forms = 'Forms';
-  static const icons = 'Icons';
+  static const animal = 'Animal';
   static const labels = 'Labels';
   static const modals = 'Modals';
   static const panels = 'Panels';
@@ -200,13 +200,13 @@ class FormsRoute extends GoRouteData {
       const NoTransitionPage<void>(child: FormsPage());
 }
 
-@TypedGoRoute<IconsRoute>(path: RoutePath.icons)
+@TypedGoRoute<IconsRoute>(path: RoutePath.animal)
 class IconsRoute extends GoRouteData {
   const IconsRoute();
 
   @override
   NoTransitionPage<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage<void>(child: IconsPage());
+      const NoTransitionPage<void>(child: AnimalPage());
 }
 
 @TypedGoRoute<LabelsRoute>(path: RoutePath.labels)

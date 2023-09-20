@@ -62,8 +62,8 @@ class _DefaultLayoutState extends State<DefaultLayout> {
         icon: Icons.settings,
         children: [
           AdminMenuItem(
-            title: RouteTitle.icons,
-            route: RoutePath.icons,
+            title: RouteTitle.animal,
+            route: RoutePath.animal,
           ),
           AdminMenuItem(
             title: RouteTitle.breadcrumbs,
