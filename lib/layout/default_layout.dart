@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_template/exports.dart';
+import 'package:flutter_admin_template/gen/assets.gen.dart';
 import 'package:flutter_admin_template/layout/admin_scaffold.dart';
 import 'package:flutter_admin_template/local/constants.dart';
 import 'package:flutter_admin_template/local/dimens.dart';
@@ -132,7 +133,16 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                 },
                 label: Text(themeData.title));
           }),
-          const LanguageChange()
+          const LanguageChange(),
+          IconButton(
+              tooltip: 'github',
+              padding: const EdgeInsets.only(top: 15, left: 15),
+              onPressed: () {
+                Utils.callUri(Uri.parse(
+                    'https://github.com/githubityu/flutter_admin_template'));
+              },
+              icon: MyAssets.images.svgs.github
+                  .svg(color: context.colorScheme.primary, width: 50))
         ],
       ),
       sideBar: SideBar(
@@ -147,8 +157,6 @@ class _DefaultLayoutState extends State<DefaultLayout> {
         items: getAdminMenuItem(),
         selectedRoute: widget.route,
         onSelected: (itemData) {
-          print(
-              'sidebar: onTap(): title = ${itemData.title}, route = ${itemData.route}');
           if (itemData.route != null && itemData.route != widget.route) {
             userAppRouter().go(itemData.route!);
           }
@@ -231,7 +239,16 @@ class DefaultPublicLayout extends StatelessWidget {
                 },
                 label: Text(themeData.title));
           }),
-          const LanguageChange()
+          const LanguageChange(),
+          IconButton(
+              tooltip: 'github',
+              padding: const EdgeInsets.only(top: 15, left: 15),
+              onPressed: () {
+                Utils.callUri(Uri.parse(
+                    'https://github.com/githubityu/flutter_admin_template'));
+              },
+              icon: MyAssets.images.svgs.github
+                  .svg(color: context.colorScheme.primary, width: 50))
         ],
       ),
       body: child,

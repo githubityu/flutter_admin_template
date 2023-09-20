@@ -24,9 +24,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   Future<bool> _getDataAsync() async {
     await Future.delayed(const Duration(seconds: 1), () {
-      _formData.userProfileImageUrl = 'https://picsum.photos/id/1005/300/300';
+      _formData.userProfileImageUrl = 'https://picsum.photos/200/300';
       _formData.username = 'Admin ABC';
-      _formData.email = 'adminabc@email.com';
+      _formData.email = 'testAbc@gmail.com';
     });
 
     return true;

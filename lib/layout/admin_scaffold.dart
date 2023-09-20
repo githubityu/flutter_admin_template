@@ -23,7 +23,6 @@ class _AdminScaffoldState extends State<AdminScaffold>
     with SingleTickerProviderStateMixin {
   static const _mobileThreshold = 768.0;
 
-  late AppBar? _appBar;
   late AnimationController _animationController;
   late Animation _animation;
   bool _isMobile = false;
