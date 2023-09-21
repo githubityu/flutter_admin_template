@@ -42,6 +42,7 @@ final appThemeProvider = Provider<ThemeData>(
       return FlexThemeData.dark(
         scheme: FlexScheme.blue,
         appBarElevation: 2,
+        fontFamily: 'NotoSansSC',
         typography: Typography.material2021(platform: defaultTargetPlatform),
         useMaterial3: true,
       );
@@ -49,6 +50,7 @@ final appThemeProvider = Provider<ThemeData>(
       return FlexThemeData.light(
         scheme: FlexScheme.blue,
         appBarElevation: 0.5,
+        fontFamily: 'NotoSansSC',
         typography: Typography.material2021(platform: defaultTargetPlatform),
         useMaterial3: true,
       );

@@ -8,6 +8,20 @@ to develop an admin portal website with Flutter v3 (SDK version 3.13.4).
 
 #### Live demo: https://githubityu.github.io/live_flutter_admin
 
+
+
+#### Web 优化 
+>通过加载web 发现https://fonts.gstatic.com/s/notosanssc下载了NotoSansSC和Roboto 
+> https://fonts.gstatic.com/s/roboto/v20/Roboto.ttf  Roboto
+> canvaskit.wasm
+1.  定义 fontFamily: 'NotoSansSC' 避免去外面下载
+2.  Roboto 更换链接 a6.push(p.x6(d,e.G3(d),j))}}if(!m)a6.push(p.x6("Roboto","https://githubityu.github.io/live_flutter_admin/assets/assets/fonts/Roboto.ttf","Roboto")) 避免去外面下载
+3.  打包制定 flutter build web   --web-renderer auto --dart-define=FLUTTER_WEB_CANVASKIT_URL=./canvaskit/
+
+
+
+
+
 ## Setup
 
 1 **Clone the repo**
