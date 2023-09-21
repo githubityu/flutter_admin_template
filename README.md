@@ -1,28 +1,29 @@
 [TOC]
 
-# Flutter Web Admin Portal
+# Flutter Admin Template
 
 Responsive web with light/dark mode and multi language supported. The objective of this project is
 to develop an admin portal website with Flutter v3 (SDK version 3.13.4).
 
-
 #### Live demo: https://githubityu.github.io/live_flutter_admin
 
+#### Web 优化
 
-
-#### Web 优化 
->通过加载web 发现https://fonts.gstatic.com/s/notosanssc下载了NotoSansSC和Roboto 
+> 通过加载web 发现https://fonts.gstatic.com/s/notosanssc下载了NotoSansSC和Roboto
 > https://fonts.gstatic.com/s/roboto/v20/Roboto.ttf  Roboto
 > canvaskit.wasm
-1.  定义 fontFamily: 'NotoSansSC' 避免去外面下载
-2.  Roboto 更换链接 a6.push(p.x6(d,e.G3(d),j))}}if(!m)a6.push(p.x6("Roboto","https://githubityu.github.io/live_flutter_admin/assets/assets/fonts/Roboto.ttf","Roboto")) 避免去外面下载
-3.  打包制定 flutter build web   --web-renderer auto --dart-define=FLUTTER_WEB_CANVASKIT_URL=./canvaskit/
+> 家里穷出去不方便，避免去外面下载 做以下几步
+
+1. 定义 fontFamily: 'NotoSansSC' 
+2. Roboto 更换链接 a6.push(p.x6(d,e.G3(d),j))}}if(!m)a6.push(p.x6("Roboto"
+   ,"https://githubityu.github.io/live_flutter_admin/assets/assets/fonts/Roboto.ttf","Roboto"))
+   
+3. 打包web flutter build web --web-renderer auto
+   --dart-define=FLUTTER_WEB_CANVASKIT_URL=./canvaskit/
 
 ![IMG_06](https://github.com/githubityu/flutter_admin_template/blob/main/images/optimize.jpg)
 ![IMG_07](https://github.com/githubityu/flutter_admin_template/blob/main/images/NotoSansSC.jpg)
 ![IMG_08](https://github.com/githubityu/flutter_admin_template/blob/main/images/Roboto.jpg)
-
-
 
 ## Setup
 
@@ -73,10 +74,6 @@ $ flutter run
 | flutter_smart_dialog | 弹框提示        |
 | logger               | 日志          |
 
-
-
-
-
 ## License
 
 MIT
@@ -87,7 +84,7 @@ MIT
 下一步用dartfrog写接口，然后后台管理接入
 [dartfrog](https://dartfrog.vgv.dev/)
 
-
 ## 参考学习
+
 [flutter-web-admin](https://github.com/kleong153/flutter-web-admin)
 [flutter_admin_scaffold](https://github.com/keyber-inc/flutter_admin_scaffold)
