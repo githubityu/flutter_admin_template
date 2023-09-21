@@ -18,7 +18,9 @@ to develop an admin portal website with Flutter v3 (SDK version 3.13.4).
 2.  Roboto 更换链接 a6.push(p.x6(d,e.G3(d),j))}}if(!m)a6.push(p.x6("Roboto","https://githubityu.github.io/live_flutter_admin/assets/assets/fonts/Roboto.ttf","Roboto")) 避免去外面下载
 3.  打包制定 flutter build web   --web-renderer auto --dart-define=FLUTTER_WEB_CANVASKIT_URL=./canvaskit/
 
-
+![IMG_06](https://github.com/githubityu/flutter_admin_template/blob/main/images/optimize.jpg)
+![IMG_07](https://github.com/githubityu/flutter_admin_template/blob/main/images/NotoSansSC.jpg)
+![IMG_08](https://github.com/githubityu/flutter_admin_template/blob/main/images/Roboto.jpg)
 
 
 
