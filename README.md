@@ -81,8 +81,8 @@ MIT
 ## 最后
 
 如果你喜欢这个项目，欢迎给我一个star。里面可能还有许多需要修改的bug,欢迎大家提出来,我将持续更新这个项目)
-下一步用dartfrog写接口，然后后台管理接入
-[dartfrog](https://dartfrog.vgv.dev/)
+下一步用gin-vue-admin中的server部分来完成接口部分
+[gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin.git)
 
 ## 参考学习
 
