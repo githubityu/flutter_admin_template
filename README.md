@@ -85,6 +85,6 @@ MIT
 [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin.git)
 
 ## 参考学习
-
+[gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin.git)
 [flutter-web-admin](https://github.com/kleong153/flutter-web-admin)
 [flutter_admin_scaffold](https://github.com/keyber-inc/flutter_admin_scaffold)
