@@ -81,10 +81,10 @@ MIT
 ## 最后
 
 如果你喜欢这个项目，欢迎给我一个star。里面可能还有许多需要修改的bug,欢迎大家提出来,我将持续更新这个项目)
-下一步用gin-vue-admin中的server部分来完成接口部分
-[gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin.git)
+下一步用webflash中的server部分来完成接口部分
+[webflash](https://github.com/enilu/web-flash)
 
 ## 参考学习
-[gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin.git)
+[webflash](https://github.com/enilu/web-flash)
 [flutter-web-admin](https://github.com/kleong153/flutter-web-admin)
 [flutter_admin_scaffold](https://github.com/keyber-inc/flutter_admin_scaffold)
