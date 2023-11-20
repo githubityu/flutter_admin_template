@@ -6,6 +6,7 @@ import 'theme/app_extension_theme.dart';
 
 Future<void> main() async {
   await LocalDataUtil.init();
+  Utils.initWebViewPlatformInstance();
   // setPathUrlStrategy();
   runApp(const ProviderScope(child: MyApp()));
 }

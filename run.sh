@@ -1,5 +1,5 @@
 flutter dart run build_runner build --delete-conflicting-outputs
-flutter run -d chrome --web-hostname 192.168.10.203 --web-port 8080
+flutter run -d chrome --web-hostname 10.168.19.130 --web-port 8080
 
 flutter pub deps
 

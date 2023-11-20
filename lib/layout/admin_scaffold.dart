@@ -3,12 +3,12 @@ import 'package:flutter_admin_template/layout/side_bar.dart';
 
 class AdminScaffold extends StatefulWidget {
   const AdminScaffold({
-    Key? key,
+    super.key,
     this.appBar,
     this.sideBar,
     required this.body,
     this.backgroundColor,
-  }) : super(key: key);
+  });
 
   final AppBar? appBar;
   final SideBar? sideBar;
@@ -156,7 +156,13 @@ class _AdminScaffoldState extends State<AdminScaffold>
                         onHorizontalDragUpdate: _onDragUpdate,
                         onHorizontalDragEnd: _onDragEnd,
                       ),
-                      widget.body,
+                      Visibility(
+                        visible: !_isOpenSidebar,
+                        maintainState: true,
+                        maintainAnimation: true,
+                        maintainSize: true,
+                        child: widget.body,
+                      ),
                       if (_animation.value > 0)
                         Container(
                           color: Colors.black
