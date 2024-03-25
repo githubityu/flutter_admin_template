@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
-import 'package:flutter_admin_template/gen/assets.gen.dart';
-import 'package:flutter_admin_template/layout/admin_scaffold.dart';
-import 'package:flutter_admin_template/local/constants.dart';
-import 'package:flutter_admin_template/local/dimens.dart';
-import 'package:flutter_admin_template/pages/admin/admin_page.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
-import 'package:flutter_admin_template/widgets/export_widget.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/gen/assets.gen.dart';
+import 'package:linjiashop_admin_web/layout/admin_menu_item.dart';
+import 'package:linjiashop_admin_web/layout/admin_scaffold.dart';
+import 'package:linjiashop_admin_web/local/dimens.dart';
+import 'package:linjiashop_admin_web/models/export_models.dart';
+import 'package:linjiashop_admin_web/providers/user/user_riverpod.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
+import 'package:linjiashop_admin_web/widgets/export_widget.dart';
 
-import '../router/router.dart';
-import 'admin_menu_item.dart';
 import 'side_bar.dart';
 
 ///AdminMenuItem 模板其实写好的，根据类型来判断是否加入到list中
 ///记得加入到路由中去
 class DefaultLayout extends StatefulWidget {
   const DefaultLayout({
-    Key? key,
+    super.key,
     required this.route,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final String route;
@@ -29,85 +28,10 @@ class DefaultLayout extends StatefulWidget {
 }
 
 class _DefaultLayoutState extends State<DefaultLayout> {
-  List<AdminMenuItem> getAdminMenuItem() {
-    return [
-      AdminMenuItem(
-        title: context.L!.top,
-        route: RoutePath.top,
-        icon: Icons.dashboard,
-      ),
-      const AdminMenuItem(
-        title: 'CSS',
-        icon: Icons.edit,
-        children: [
-          AdminMenuItem(
-            title: RouteTitle.typography,
-            route: RoutePath.typography,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.forms,
-            route: RoutePath.forms,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.buttons,
-            route: RoutePath.buttons,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.colors,
-            route: RoutePath.colors,
-          ),
-        ],
-      ),
-      const AdminMenuItem(
-        title: 'Components',
-        icon: Icons.settings,
-        children: [
-          AdminMenuItem(
-            title: RouteTitle.animal,
-            route: RoutePath.animal,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.breadcrumbs,
-            route: RoutePath.breadcrumbs,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.labels,
-            route: RoutePath.labels,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.alerts,
-            route: RoutePath.alerts,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.modals,
-            route: RoutePath.modals,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.panels,
-            route: RoutePath.panels,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.iframe,
-            route: RoutePath.iframe,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.generalUi,
-            route: RoutePath.generalUi,
-          ),
-          AdminMenuItem(
-            title: RouteTitle.crud,
-            route: RoutePath.crud,
-          )
-        ],
-      ),
-      if (Constants.loginType == 2) addAdminMenuItem()
-    ];
-  }
 
   @override
   void initState() {
     super.initState();
-    if (Constants.loginType == 2) addAdminRouter();
   }
 
   @override
@@ -134,35 +58,42 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                 label: Text(themeData.title));
           }),
           const LanguageChange(),
+
           IconButton(
               tooltip: 'github',
               padding: const EdgeInsets.only(top: 15, left: 15),
               onPressed: () {
                 Utils.callUri(Uri.parse(
-                    'https://github.com/githubityu/flutter_admin_template'));
+                    'https://github.com/githubityu/linjiashop_admin_web'));
               },
-              icon: MyAssets.images.svgs.github
-                  .svg(color: context.colorScheme.primary, width: 50))
+              icon: Assets.images.x404.image(color: context.colorScheme.primary, width: 50))
         ],
       ),
-      sideBar: SideBar(
-        header: SidebarHeader(
-          onAccountButtonPressed: () {
-            const MyProfileRoute().go(context);
-          },
-          onLogoutButtonPressed: () {
-            const LoginRoute().go(context);
-          },
-        ),
-        items: getAdminMenuItem(),
-        selectedRoute: widget.route,
-        onSelected: (itemData) {
-          if (itemData.route != null && itemData.route != widget.route) {
-            userAppRouter().go(itemData.route!);
-          }
-        },
+      sideBar: Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          return AsyncValueWidget(ref.watch(infoProvider), asyncValueBuilder: (InfoModel? data){
+            final dt = data?.menus.map((e) => AdminMenuItem.byMenusItem(e)).toList();
+            return SideBar(
+              header: SidebarHeader(
+                onAccountButtonPressed: () {
+                },
+                onLogoutButtonPressed: () {
+                },
+              ),
+              items: dt??[],
+              selectedRoute: widget.route,
+              onSelected: (itemData) {
+                if (itemData.route != null && itemData.route != widget.route) {
+                  userAppRouter().go(itemData.route!);
+                }
+              },
+            );
+          });
+
+      },),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: widget.child,
       ),
-      body: widget.child,
     );
   }
 }
@@ -245,10 +176,9 @@ class DefaultPublicLayout extends StatelessWidget {
               padding: const EdgeInsets.only(top: 15, left: 15),
               onPressed: () {
                 Utils.callUri(Uri.parse(
-                    'https://github.com/githubityu/flutter_admin_template'));
+                    'https://github.com/githubityu/linjiashop_admin_web'));
               },
-              icon: MyAssets.images.svgs.github
-                  .svg(color: context.colorScheme.primary, width: 50))
+              icon: Assets.images.x404.image(color: context.colorScheme.primary, width: 50))
         ],
       ),
       body: child,

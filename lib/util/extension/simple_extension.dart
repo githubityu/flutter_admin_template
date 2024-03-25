@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
-import 'package:flutter_admin_template/models/export_models.dart';
-import 'package:flutter_admin_template/theme/app_extension_theme.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/models/export_models.dart';
+import 'package:linjiashop_admin_web/theme/app_extension_theme.dart';
 
 extension ResponseConverT on ResponseBodyMt {
   T? converterT<T>() {

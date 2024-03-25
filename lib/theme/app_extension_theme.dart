@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/gen/colors.gen.dart';
+import 'package:linjiashop_admin_web/gen/colors.gen.dart';
 
 class AppExtensionTheme extends ThemeExtension<AppExtensionTheme> {
   final ButtonStyle primaryElevated;

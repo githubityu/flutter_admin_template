@@ -1,80 +1,31 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/layout/default_layout.dart';
-import 'package:flutter_admin_template/local/constants.dart';
-import 'package:flutter_admin_template/local/dimens.dart';
-import 'package:flutter_admin_template/pages/admin/admin_page.dart';
-import 'package:flutter_admin_template/router/router.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:ityu_tools/util/export_util.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/providers/user/user_riverpod.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
+import 'package:linjiashop_admin_web/widgets/export_widget.dart';
+
+import '../layout/export_layout.dart';
+import '../local/dimens.dart';
+import '../router/router.dart';
+
+class LoginScreenPage extends StatefulWidget {
+  const LoginScreenPage({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginScreenPage> createState() => _LoginScreenPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
-  final _formData = FormData();
-
-  var _isFormLoading = false;
-
-  Future<void> _doLoginAsync({
-    required VoidCallback onSuccess,
-    required void Function(String message) onError,
-  }) async {
-    context.requestUnfocus();
-    if (_formKey.currentState?.validate() ?? false) {
-      // Validation passed.
-      _formKey.currentState!.save();
-
-      setState(() => _isFormLoading = true);
-
-      Future.delayed(const Duration(seconds: 1), () async {
-        if (!_formData.username.contains('admin') ||
-            !_formData.password.contains('admin')) {
-          Constants.loginType = 0;
-          onError.call('Invalid username or password.');
-        } else {
-          if (_formData.username == 'admin' &&
-              _formData.password.contains('admin')) {
-            Constants.loginType = 2;
-          } else {
-            Constants.loginType = 1;
-          }
-          onSuccess.call();
-        }
-
-        setState(() => _isFormLoading = false);
-      });
-    }
-  }
-
-  void _onLoginSuccess(BuildContext context) {
-    userAppRouter().go(RoutePath.home);
-  }
-
-  void _onLoginError(BuildContext context, String message) {
-    final dialog = AwesomeDialog(
-      context: context,
-      dialogType: DialogType.error,
-      desc: message,
-      width: kDialogWidth,
-      btnOkText: 'OK',
-      btnOkOnPress: () {},
-    );
-
-    dialog.show();
-  }
-
+class _LoginScreenPageState extends State<LoginScreenPage> {
+  late final themeData = Theme.of(context);
+  final formKey = GlobalKey<FormBuilderState>();
+  late final lang = context.L!;
   @override
   Widget build(BuildContext context) {
-    final lang = context.L!;
-    final themeData = Theme.of(context);
 
     return DefaultPublicLayout(
       child: SingleChildScrollView(
@@ -90,8 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: kDefaultPadding),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: kDefaultPadding),
                       child: FlutterLogo(
                         size: 80,
                       ),
@@ -104,14 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(bottom: kDefaultPadding * 2.0),
+                      const EdgeInsets.only(bottom: kDefaultPadding * 2.0),
                       child: Text(
                         lang.adminPortalLogin,
                         style: themeData.textTheme.titleMedium,
                       ),
                     ),
                     FormBuilder(
-                      key: _formKey,
+                      key: formKey,
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Column(
                         children: [
@@ -126,12 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 helperText: '* Demo username: admin',
                                 border: const OutlineInputBorder(),
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                               ),
                               enableSuggestions: false,
                               validator: FormBuilderValidators.required(),
-                              onSaved: (value) =>
-                                  (_formData.username = value ?? ''),
                             ),
                           ),
                           Padding(
@@ -145,59 +94,38 @@ class _LoginScreenState extends State<LoginScreen> {
                                 helperText: '* Demo password: admin',
                                 border: const OutlineInputBorder(),
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                               ),
                               enableSuggestions: false,
                               obscureText: true,
                               validator: FormBuilderValidators.required(),
-                              onSaved: (value) =>
-                                  (_formData.password = value ?? ''),
                             ),
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(bottom: kDefaultPadding),
+                            const EdgeInsets.only(bottom: kDefaultPadding),
                             child: SizedBox(
                               height: 40.0,
                               width: double.infinity,
-                              child: ElevatedButton(
-                                style:
+                              child: HookConsumer(
+                                builder: (context,ref,_) {
+                                  final isShowLoading = useState(false);
+                                  return ElevatedButton(
+                                    style:
                                     context.appExtensionTheme!.primaryElevated,
-                                onPressed: (_isFormLoading
-                                    ? null
-                                    : () => _doLoginAsync(
-                                          onSuccess: () =>
-                                              _onLoginSuccess(context),
-                                          onError: (message) =>
-                                              _onLoginError(context, message),
-                                        )),
-                                child: Text(lang.login),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40.0,
-                            width: double.infinity,
-                            child: TextButton(
-                              style: context.appExtensionTheme!.secondaryText,
-                              onPressed: () =>
-                                  userAppRouter().go(RoutePath.register),
-                              child: RichText(
-                                text: TextSpan(
-                                  text: '${lang.dontHaveAnAccount} ',
-                                  style: TextStyle(
-                                    color: themeData.colorScheme.onSurface,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: lang.registerNow,
-                                      style: TextStyle(
-                                        color: context.colorScheme.primary,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                    onPressed: (){
+                                      if(formKey.currentState?.saveAndValidate()==true){
+                                        isShowLoading.value = true;
+                                       final username =  formKey.currentState?.instantValue["username"];
+                                      final password =  formKey.currentState?.instantValue["password"];
+                                        ref.read(loginProvider(username,password).future).then((value){
+                                           const HomeRoute().go(context);
+                                        }).whenComplete(() => isShowLoading.value = false);
+                                      }
+                                    },
+                                    child: isShowLoading.value?const LoadingWidget():Text(lang.login),
+                                  );
+                                }
                               ),
                             ),
                           ),
@@ -215,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class FormData {
-  String username = '';
-  String password = '';
-}
+
+
+
+

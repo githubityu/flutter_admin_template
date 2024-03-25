@@ -1,6 +1,6 @@
 {
-    "name": "flutter_admin_template",
-    "short_name": "flutter_admin_template",
+    "name": "linjiashop_admin_web",
+    "short_name": "linjiashop_admin_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -7,6 +7,7 @@
 import 'package:ityu_tools/util/export_util.dart';
 
 import 'export_models.dart';
+import 'user_models.dart';
 
 MyJsonConverter jsonConvert = MyJsonConverter();
 
@@ -79,6 +80,12 @@ class MyJsonConverter {
 
     if (type == (PriceModel).toString()) {
       return PriceModel.fromJson(json) as M;
+    }
+    if (type == (InfoModel).toString()) {
+      return InfoModel.fromJson(json) as M;
+    }
+    if (type == (PageDataListModel).toString()) {
+      return PageDataListModel.fromJson(json) as M;
     }
     "$type not found".log();
     return null;

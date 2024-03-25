@@ -1,1 +1,7 @@
-class AppUtils {}
+class AppUtils {
+  static bool isInMenus(){
+    return true;
+  }
+
+
+}

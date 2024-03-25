@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
-import 'package:flutter_admin_template/local/constants.dart';
-import 'package:flutter_admin_template/local/dimens.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
+import 'package:flutter/services.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/local/constants.dart';
+import 'package:linjiashop_admin_web/local/dimens.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
+import 'package:linjiashop_admin_web/widgets/export_widget.dart';
 
 class SidebarHeader extends StatelessWidget {
   final void Function() onAccountButtonPressed;
@@ -21,7 +23,7 @@ class SidebarHeader extends StatelessWidget {
         switch (Constants.loginType) { 1 => "哈利路亚", 2 => "我是管理员", _ => '未登录' };
     return Container(
       color: context.colorScheme.primary,
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         children: [
           Row(
@@ -95,3 +97,127 @@ class SidebarHeader extends StatelessWidget {
     );
   }
 }
+
+class CustomIconButton extends StatelessWidget {
+  final Color backgroundColor;
+  final String text;
+  final IconData? icon;
+  final VoidCallback? onPressed;
+  final ValueNotifier<bool>? isLoading;
+
+  const CustomIconButton(
+      {super.key,
+      required this.backgroundColor,
+      required this.text,
+      this.icon,
+      this.isLoading,
+      this.onPressed});
+
+  Widget getChild(ButtonStyle style, Text textW, {bool? isLoading}) {
+    final child = isLoading == true
+        ? const SizedBox(
+            width: 20,
+            height: 20,
+            child: LoadingWidget(color: Colors.white,))
+        : textW;
+
+    final content = icon == null
+        ? ElevatedButton(
+            onPressed: onPressed,
+            style: style,
+            child: child,
+          )
+        : TextButtonWithIconX(
+            onPressed: onPressed,
+            icon:  Icon(
+              icon!,
+              size: 20,
+            ),
+            gap: 5,
+            label: child,
+            style: style,
+          );
+    ;
+    return SizedBox(
+      height: 30,
+      child: content,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final style = ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        backgroundColor: backgroundColor,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        foregroundColor: Colors.white);
+    final textW = Text(text);
+    return isLoading != null
+        ? ValueListenableBuilder(
+            valueListenable: isLoading!,
+            builder: (context, value, child) {
+              "isLoading=${isLoading!.value}".log();
+              return getChild(style, textW, isLoading: value);
+            })
+        : getChild(style, textW);
+  }
+}
+class LoadingWidget extends StatelessWidget {
+  final Color? color;
+  const LoadingWidget({super.key, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularProgressIndicator(
+      color: color??context.textTheme.titleLarge?.color,
+    );
+  }
+}
+
+
+class TextFieldWidthWidget extends StatelessWidget {
+  final Widget child;
+  const TextFieldWidthWidget({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      width: Constants.searchContentWidth,
+      child: child,
+    );
+  }
+}
+
+
+
+class CustomTextField extends StatelessWidget {
+  final String? hint;
+  final String name;
+  final String? initialValue;
+  final bool? obscureText;
+  final List<TextInputFormatter>? inputFormatters;
+  final FormFieldValidator<String>? validator;
+  const CustomTextField({super.key, this.hint, required this.name, this.inputFormatters, this.validator, this.initialValue, this.obscureText});
+
+  @override
+  Widget build(BuildContext context) {
+     return FormBuilderTextField(
+       inputFormatters:inputFormatters,
+       name: name,
+       obscureText: obscureText?? false,
+       initialValue: initialValue,
+       decoration: InputDecoration(
+         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+         hintText: hint,
+         border: const OutlineInputBorder(),
+
+       ),
+       enableSuggestions: false,
+       autocorrect: false,
+       validator: validator,
+     );
+  }
+
+}
+

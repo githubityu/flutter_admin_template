@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/layout/side_bar.dart';
+import 'package:linjiashop_admin_web/layout/side_bar.dart';
+
+import '../local/dimens.dart';
 
 class AdminScaffold extends StatefulWidget {
   const AdminScaffold({
@@ -11,7 +13,7 @@ class AdminScaffold extends StatefulWidget {
   });
 
   final AppBar? appBar;
-  final SideBar? sideBar;
+  final Widget? sideBar;
   final Widget body;
   final Color? backgroundColor;
 
@@ -85,7 +87,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
   void _onDragUpdate(DragUpdateDetails details) {
     if (_canDragged) {
       final delta =
-          (details.primaryDelta ?? 0.0) / (widget.sideBar?.width ?? 1.0);
+          (details.primaryDelta ?? 0.0) / (kSliderBarWidth);
       _animationController.value += delta;
     }
   }
@@ -103,7 +105,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
 
     if (details.velocity.pixelsPerSecond.dx.abs() >= minFlingVelocity) {
       final visualVelocity =
-          details.velocity.pixelsPerSecond.dx / (widget.sideBar?.width ?? 1.0);
+          details.velocity.pixelsPerSecond.dx / (kSliderBarWidth);
 
       await _animationController.fling(velocity: visualVelocity);
       if (_animationController.isCompleted) {
@@ -129,6 +131,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +179,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
                       ClipRect(
                         child: SizedOverflowBox(
                           size: Size(
-                              (widget.sideBar?.width ?? 1.0) * _animation.value,
+                              (kSliderBarWidth) * _animation.value,
                               double.infinity),
                           child: widget.sideBar,
                         ),
@@ -189,7 +192,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
                           ? ClipRect(
                               child: SizedOverflowBox(
                                 size: Size(
-                                    (widget.sideBar?.width ?? 1.0) *
+                                    (kSliderBarWidth) *
                                         _animation.value,
                                     double.infinity),
                                 child: widget.sideBar,
@@ -208,7 +211,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
     );
   }
 
-  AppBar? _buildAppBar(AppBar? appBar, SideBar? sideBar) {
+  AppBar? _buildAppBar(AppBar? appBar, Widget? sideBar) {
     if (appBar == null) {
       return null;
     }

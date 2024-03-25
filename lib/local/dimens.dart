@@ -18,4 +18,6 @@ const double kScreenWidthXxl = 1400.0;
 
 // Dialog width begin.
 const double kDialogWidth = 460.0;
+
+const double kSliderBarWidth = 240;
 // Dialog width end.

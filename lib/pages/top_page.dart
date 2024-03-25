@@ -1,13 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
-import 'package:flutter_admin_template/gen/colors.gen.dart';
-import 'package:flutter_admin_template/layout/default_layout.dart';
-import 'package:flutter_admin_template/local/dimens.dart';
-import 'package:flutter_admin_template/router/router.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
+import 'package:ityu_tools/exports.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
 
+
+import '../gen/export_gen.dart';
+import '../layout/export_layout.dart';
+import '../local/dimens.dart';
+import '../router/router.dart';
 import '../widgets/export_widget.dart';
 
 class TopPage extends StatefulWidget {

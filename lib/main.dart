@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
+import 'package:ityu_tools/widget/my_iframe/my_iframe_web.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
 
 import 'theme/app_extension_theme.dart';
 
 Future<void> main() async {
-  await LocalDataUtil.init();
-  Utils.initWebViewPlatformInstance();
-  // setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
+  initWebViewPlatformInstance();
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -21,7 +22,11 @@ class MyApp extends HookConsumerWidget {
     final appRouter = userAppRouter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: theme..copyWith(extensions: [AppExtensionTheme.of(context)]),
+      theme: theme..copyWith(extensions: [AppExtensionTheme.of(context)],elevatedButtonTheme: ElevatedButtonThemeData(
+        style: theme.elevatedButtonTheme.style?.copyWith(
+            shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)))
+        ),
+      )),
       locale: ref.watch(appLocationProvider),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

@@ -1,50 +1,58 @@
-name: flutter_admin_template
-description: A new Flutter project.
+name: linjiashop_admin_web
+description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: '>=3.3.1 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: any
+  intl: ^0.18.1
   cupertino_icons: ^1.0.6
   flutter_layout_grid: ^2.0.5
   pluto_grid: ^7.0.2
-  go_router: ^12.1.1
-  url_launcher: ^6.2.1
-  adaptive_navigation: ^0.0.9
+  go_router: ^13.2.1
+  url_launcher: ^6.2.5
+  adaptive_navigation: ^0.0.10
   url_strategy: ^0.2.0
   #动画
-  flutter_animate: ^4.2.0+1
-  flutter_svg: ^2.0.9
+  flutter_animate: ^4.5.0
   #状态管理
-  flutter_hooks: ^0.20.3
-  hooks_riverpod: ^2.4.6
-  riverpod_annotation: ^2.3.1
+  flutter_hooks: ^0.20.5
+  hooks_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
 
   #网络请求
-  retrofit: ^4.0.3
-  dio: ^5.3.3
-  logger: ^2.0.2+1
+  retrofit: ^4.1.0
+  dio: ^5.4.1
+  logger: ^2.1.0
   equatable: ^2.0.5
-  flutter_smart_dialog: ^4.9.5+1
+  flutter_smart_dialog: ^4.9.6
   ityu_tools:
     git: https://gitee.com/andoridityu/ityu_tools.git
-  google_fonts: ^6.1.0
+  google_fonts: ^6.2.1
   flex_color_scheme: ^7.3.1
-  awesome_dialog: ^3.1.0
-  pointer_interceptor: ^0.9.3+7
-  flutter_form_builder: ^9.1.1
+  awesome_dialog: ^3.2.0
+  pointer_interceptor: ^0.10.1
+  flutter_form_builder: ^9.2.1
   form_builder_validators: ^9.1.0
+  flutter_multi_formatter: ^2.12.4
+#  flutter_gen: ^5.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
-  build_runner: ^2.4.6
-  go_router_builder: ^2.3.4
+  build_runner: ^2.4.8
+  go_router_builder: ^2.4.1
+  retrofit_generator: ^8.1.0
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.3.10
+#  flutter_gen_runner: ^5.4.0
+
 
 
 flutter:
@@ -52,16 +60,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/svg/
+    - assets/images/
   fonts:
     - family: NotoSansSC
       fonts:
         - asset: assets/fonts/NotoSansSC.otf
-
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+#
+#flutter_gen:
+#  output: lib/gen/ # Optional (default: lib/gen/)
+#  line_length: 80 # Optional (default: 80)

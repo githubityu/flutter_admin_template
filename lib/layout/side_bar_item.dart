@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
 
 import '../layout/admin_menu_item.dart';
 
@@ -33,8 +34,8 @@ class SideBarItem extends StatelessWidget {
     if (item.children.isEmpty) {
       return ListTile(
         contentPadding: _getTilePadding(depth),
-        leading: _buildIcon(item.icon, selected),
-        title: _buildTitle(item.title, selected),
+        leading: ShowUtils.getIcon(item.icon),
+        title: Text(item.title,style: const TextStyle(fontSize: 14),),
         selected: selected,
         onTap: () {
           if (onSelected != null) {
@@ -54,11 +55,11 @@ class SideBarItem extends StatelessWidget {
         depth: depth + 1,
       );
     }).toList();
-
     return ExpansionTile(
       tilePadding: _getTilePadding(depth),
-      leading: _buildIcon(item.icon),
-      title: _buildTitle(item.title),
+      leading: ShowUtils.getIcon(item.icon),
+      title: Text(item.title,style: const TextStyle(fontSize: 14),),
+      textColor: context.colorScheme.primary,
       initiallyExpanded: selected,
       children: childrenTiles,
     );
@@ -74,14 +75,6 @@ class SideBarItem extends StatelessWidget {
       }
     }
     return false;
-  }
-
-  Widget _buildIcon(IconData? icon, [bool selected = false]) {
-    return icon != null ? Icon(icon, size: 22) : const SizedBox();
-  }
-
-  Widget _buildTitle(String title, [bool selected = false]) {
-    return Text(title);
   }
 
   EdgeInsets _getTilePadding(int depth) {

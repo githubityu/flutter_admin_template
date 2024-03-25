@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_template/exports.dart';
+import 'package:linjiashop_admin_web/exports.dart';
+
+import 'export_widget.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget(this.value,
@@ -29,7 +31,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
               );
         },
         loading: () => isShowLoading
-            ? const LoadingWidget()
+            ? const Center(child: LoadingWidget())
             : placeHolderWidget ?? const SizedBox.shrink());
   }
 }
@@ -59,11 +61,6 @@ class AsyncValueSliverWidget<T> extends StatelessWidget {
   }
 }
 
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
-  }
-}
+
+

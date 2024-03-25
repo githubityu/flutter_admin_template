@@ -1,6 +1,6 @@
-import 'package:flutter_admin_template/router/router.dart';
+import 'package:linjiashop_admin_web/router/router.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_admin_template/exports.dart';
+import 'package:linjiashop_admin_web/exports.dart';
 
 
 T useDisposable<T>(T Function() cb, List<Object?> keys) {

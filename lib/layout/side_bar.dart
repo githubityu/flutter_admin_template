@@ -11,7 +11,6 @@ class SideBar extends StatefulWidget {
     required this.items,
     required this.selectedRoute,
     this.onSelected,
-    this.width = 240.0,
     this.scrollController,
     this.header,
     this.footer,
@@ -20,7 +19,6 @@ class SideBar extends StatefulWidget {
   final List<AdminMenuItem> items;
   final String selectedRoute;
   final void Function(AdminMenuItem item)? onSelected;
-  final double width;
   final ScrollController? scrollController;
   final Widget? header;
   final Widget? footer;
@@ -35,14 +33,14 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _sideBarWidth = widget.width;
+    _sideBarWidth = 240;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final mediaQuery = MediaQuery.of(context);
-    _sideBarWidth = min(mediaQuery.size.width * 0.7, widget.width);
+    _sideBarWidth = min(mediaQuery.size.width * 0.7, 240);
   }
 
   @override

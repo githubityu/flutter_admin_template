@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_admin_template/local/dimens.dart';
-import 'package:flutter_admin_template/util/export_util.dart';
+import 'package:linjiashop_admin_web/local/dimens.dart';
+import 'package:linjiashop_admin_web/util/export_util.dart';
 
 
 class TextWithCopyButton extends StatelessWidget {
@@ -12,13 +12,13 @@ class TextWithCopyButton extends StatelessWidget {
   final Color? copyIconColor;
 
   const TextWithCopyButton({
-    Key? key,
+    super.key,
     required this.textWidget,
     required this.textToCopy,
     this.textWidgetRightPadding = kTextPadding,
     this.copyIconSize,
     this.copyIconColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
