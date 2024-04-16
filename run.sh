@@ -27,3 +27,7 @@ flutter config --enable-web
 
 ##facebook
 keytool -exportcert -alias advancer -keystore /Users/yujunlong/AndroidStudioProjects/easy_home/android/app/easy_home.jks | openssl sha1 -binary | openssl base64
+
+
+dart pub global activate dhttpd
+dart pub global run dhttpd --path build/web/
